@@ -1,13 +1,14 @@
 alert('Welcome to the first game Secret Number!')
-let secretNumber = 6
+let maximumNumber = 500;
+let secretNumber = parseInt(Math.random() * maximumNumber + 1)
 let number 
 let attempts = 1
 
 while (number != secretNumber){
-    number = Number(prompt('Enter a number from 0 to 10:'))
+    number = Number(prompt(`Enter a number from 0 to ${maximumNumber}:`))
 
     if (number == secretNumber){
-        alert(`The number is ${secretNumber}, you win with ${attempts} attempts!`)
+        break;
     } else {
         if (number > secretNumber){
             alert(`The number is less than ${number}`)
@@ -17,3 +18,8 @@ while (number != secretNumber){
         attempts++
     }
 }
+if (attempts > 1) {
+    alert(`The number is ${secretNumber}, you win with ${attempts} attempts!`)
+    } else {
+        alert(`The number is ${secretNumber}, you win with ${attempts} attempt!`)
+    }
