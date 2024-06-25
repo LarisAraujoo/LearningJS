@@ -4,8 +4,9 @@
 // let paragrafo = document.querySelector('p');
 //paragrafo.innerHTML = '';
 
-let numeroAleatorio = 5;
-
+let listaDeNumeros = [];
+let numeroLimite = 100;
+let numeroAleatorio = gerarUmNumeroAleatorio();
 let tentativas = 1;
 
 function exibirTextoNaTela (tag, texto) {
@@ -44,7 +45,22 @@ function verificarChute() {
 
 
 function gerarUmNumeroAleatorio() {
-    return parseInt(Math.random() * 100 + 1);
+    let numeroEscolhido =  parseInt(Math.random() * numeroLimite + 1);
+    let quantidadeDeElementosNaLista = listaDeNumeros.length;
+
+    if(quantidadeDeElementosNaLista == numeroLimite) {
+        listaDeNumeros = [];
+    }
+
+    if (listaDeNumeros.includes(numeroEscolhido)) {
+        
+        return gerarUmNumeroAleatorio();
+
+    } else {
+        listaDeNumeros.push(numeroEscolhido);
+        
+        return numeroEscolhido;
+    }
 }
 
 function limparCampo() {
@@ -53,7 +69,7 @@ function limparCampo() {
 }
 
 function reiniciarJogo() {
-    numeroAleatorio = 5;
+    numeroAleatorio = gerarUmNumeroAleatorio();
     limparCampo();
     tentativas = 1;
     exibirMensagemInicial();
